@@ -1,5 +1,5 @@
 tasks:
-  - name: Laravel Setup
+  - name: Instalador de Laravel
     init: |
       cd api
       composer install
@@ -7,7 +7,7 @@ tasks:
       php artisan key:generate
     command: |
       cd api
-      php artisan migrate --seed # Esto lo usaremos más adelante
+      php artisan migrate
       php artisan serve --host=0.0.0.0 --port=8000
 
 ports:
