@@ -1,0 +1,18 @@
+﻿version: '3.8'
+services:
+  mysql_db:
+    image: mysql:8.0
+    container_name: rifas-mysql-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: rifas_db
+      MYSQL_USER: rifas_user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - rifas-db-data:/var/lib/mysql
+
+volumes:
+  rifas-db-data:

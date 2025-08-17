@@ -1,0 +1,18 @@
+# Visual Studio Code / Visual Studio
+.vscode/
+.vs/
+
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Laravel dependencies (Composer)
+vendor/
+
+# Laravel environment file (contains secrets)
+.env
+
+# Operating System files
+.DS_Store
+Thumbs.db
