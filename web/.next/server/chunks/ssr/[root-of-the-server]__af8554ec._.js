@@ -84,15 +84,15 @@ function Hero() {
 "[project]/src/components/home/TicketGrid.tsx [app-ssr] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
 
-// Ya no necesitamos 'useState' aquí.
-// El componente ahora es más "tonto", solo muestra lo que le dicen.
 __turbopack_context__.s({
     "default": ()=>TicketGrid
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+'use client';
+;
 ;
 function Ticket({ number, status, onClick }) {
-    // ... (El código interno de Ticket no cambia)
     const getStatusClasses = ()=>{
         switch(status){
             case 'ocupado':
@@ -117,28 +117,42 @@ function Ticket({ number, status, onClick }) {
     }, this);
 }
 function TicketGrid({ selectedTickets, onTicketClick }) {
-    // Simulación de datos (esto no cambia)
-    const initialTickets = Array.from({
-        length: 100
-    }, (_, i)=>({
-            number: i + 1,
-            status: Math.random() < 0.2 ? 'ocupado' : 'disponible'
-        }));
+    const [apiTickets, setApiTickets] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [isLoading, setIsLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        const apiUrl = ("TURBOPACK compile-time value", "https://8000-cesarcwebs-plataformari-kn81hd4ihgo.ws-us121.gitpod.io") || 'https://8000-cesarcwebs-plataformari-kn81hd4ihgo.ws-us121.gitpod.io';
+        fetch(`${apiUrl}/api/tickets`).then((res)=>res.json()).then((data)=>{
+            setApiTickets(data);
+            setIsLoading(false);
+        }).catch((error)=>{
+            console.error("Error al obtener los boletos:", error);
+            setIsLoading(false);
+        });
+    }, []);
+    if (isLoading) {
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "text-center p-10",
+            children: "Cargando boletos..."
+        }, void 0, false, {
+            fileName: "[project]/src/components/home/TicketGrid.tsx",
+            lineNumber: 68,
+            columnNumber: 12
+        }, this);
+    }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "mt-12 w-full max-w-4xl mx-auto mb-32",
         children: [
-            " ",
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                 className: "text-3xl font-bold text-center mb-6",
                 children: "Elige tus Boletos"
             }, void 0, false, {
                 fileName: "[project]/src/components/home/TicketGrid.tsx",
-                lineNumber: 52,
+                lineNumber: 73,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "grid grid-cols-5 sm:grid-cols-10 md:grid-cols-10 lg:grid-cols-10 gap-2",
-                children: initialTickets.map((ticket)=>{
+                children: apiTickets.map((ticket)=>{
                     const status = ticket.status === 'ocupado' ? 'ocupado' : selectedTickets.includes(ticket.number) ? 'seleccionado' : 'disponible';
                     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Ticket, {
                         number: ticket.number,
@@ -146,19 +160,19 @@ function TicketGrid({ selectedTickets, onTicketClick }) {
                         onClick: onTicketClick
                     }, ticket.number, false, {
                         fileName: "[project]/src/components/home/TicketGrid.tsx",
-                        lineNumber: 63,
+                        lineNumber: 84,
                         columnNumber: 13
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/src/components/home/TicketGrid.tsx",
-                lineNumber: 53,
+                lineNumber: 74,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/home/TicketGrid.tsx",
-        lineNumber: 51,
+        lineNumber: 72,
         columnNumber: 5
     }, this);
 }

@@ -1,5 +1,6 @@
-﻿// Ya no necesitamos 'useState' aquí.
-// El componente ahora es más "tonto", solo muestra lo que le dicen.
+﻿'use client';
+
+import { useState, useEffect } from 'react';
 
 type TicketStatus = 'disponible' | 'ocupado' | 'seleccionado';
 
@@ -10,7 +11,6 @@ interface TicketProps {
 }
 
 function Ticket({ number, status, onClick }: TicketProps) {
-  // ... (El código interno de Ticket no cambia)
   const getStatusClasses = () => {
     switch (status) {
       case 'ocupado':
@@ -34,37 +34,58 @@ function Ticket({ number, status, onClick }: TicketProps) {
   );
 }
 
-// Props que recibirá la parrilla completa
+interface ApiTicket {
+  id: number;
+  number: number;
+  status: 'disponible' | 'ocupado';
+}
+
 interface TicketGridProps {
   selectedTickets: number[];
   onTicketClick: (number: number) => void;
 }
 
 export default function TicketGrid({ selectedTickets, onTicketClick }: TicketGridProps) {
-  // Simulación de datos (esto no cambia)
-  const initialTickets = Array.from({ length: 100 }, (_, i) => ({
-    number: i + 1,
-    status: Math.random() < 0.2 ? 'ocupado' : 'disponible',
-  }));
+  const [apiTickets, setApiTickets] = useState<ApiTicket[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://8000-cesarcwebs-plataformari-kn81hd4ihgo.ws-us121.gitpod.io';
+
+    fetch(`${apiUrl}/api/tickets`)
+      .then(res => res.json())
+      .then(data => {
+        setApiTickets(data);
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.error("Error al obtener los boletos:", error);
+        setIsLoading(false);
+      });
+  }, []);
+
+  if (isLoading) {
+    return <div className="text-center p-10">Cargando boletos...</div>;
+  }
 
   return (
-    <div className="mt-12 w-full max-w-4xl mx-auto mb-32"> {/* Añadimos margen inferior */}
+    <div className="mt-12 w-full max-w-4xl mx-auto mb-32">
       <h3 className="text-3xl font-bold text-center mb-6">Elige tus Boletos</h3>
       <div className="grid grid-cols-5 sm:grid-cols-10 md:grid-cols-10 lg:grid-cols-10 gap-2">
-        {initialTickets.map((ticket) => {
+        {apiTickets.map((ticket) => {
           const status: TicketStatus =
             ticket.status === 'ocupado'
               ? 'ocupado'
               : selectedTickets.includes(ticket.number)
               ? 'seleccionado'
               : 'disponible';
-          
+
           return (
             <Ticket
               key={ticket.number}
               number={ticket.number}
               status={status}
-              onClick={onTicketClick} // Ahora usa la función que viene de las props
+              onClick={onTicketClick}
             />
           );
         })}
