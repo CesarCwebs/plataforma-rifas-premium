@@ -120,8 +120,7 @@ function TicketGrid({ selectedTickets, onTicketClick }) {
     const [apiTickets, setApiTickets] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [isLoading, setIsLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        const apiUrl = ("TURBOPACK compile-time value", "https://8000-cesarcwebs-plataformari-kn81hd4ihgo.ws-us121.gitpod.io") || 'https://8000-cesarcwebs-plataformari-kn81hd4ihgo.ws-us121.gitpod.io';
-        fetch(`${apiUrl}/api/tickets`).then((res)=>res.json()).then((data)=>{
+        fetch('/api/tickets').then((res)=>res.json()).then((data)=>{
             setApiTickets(data);
             setIsLoading(false);
         }).catch((error)=>{
@@ -135,7 +134,7 @@ function TicketGrid({ selectedTickets, onTicketClick }) {
             children: "Cargando boletos..."
         }, void 0, false, {
             fileName: "[project]/src/components/home/TicketGrid.tsx",
-            lineNumber: 68,
+            lineNumber: 66,
             columnNumber: 12
         }, this);
     }
@@ -147,7 +146,7 @@ function TicketGrid({ selectedTickets, onTicketClick }) {
                 children: "Elige tus Boletos"
             }, void 0, false, {
                 fileName: "[project]/src/components/home/TicketGrid.tsx",
-                lineNumber: 73,
+                lineNumber: 71,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -160,19 +159,19 @@ function TicketGrid({ selectedTickets, onTicketClick }) {
                         onClick: onTicketClick
                     }, ticket.number, false, {
                         fileName: "[project]/src/components/home/TicketGrid.tsx",
-                        lineNumber: 84,
+                        lineNumber: 82,
                         columnNumber: 13
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/src/components/home/TicketGrid.tsx",
-                lineNumber: 74,
+                lineNumber: 72,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/home/TicketGrid.tsx",
-        lineNumber: 72,
+        lineNumber: 70,
         columnNumber: 5
     }, this);
 }

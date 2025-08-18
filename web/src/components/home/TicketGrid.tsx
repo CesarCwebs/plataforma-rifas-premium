@@ -50,9 +50,7 @@ export default function TicketGrid({ selectedTickets, onTicketClick }: TicketGri
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://8000-cesarcwebs-plataformari-kn81hd4ihgo.ws-us121.gitpod.io';
-
-    fetch(`${apiUrl}/api/tickets`)
+    fetch('/api/tickets')
       .then(res => res.json())
       .then(data => {
         setApiTickets(data);
